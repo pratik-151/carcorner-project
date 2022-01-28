@@ -3,7 +3,7 @@ from pages.models import Team
 
 # Register your models here.
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('id','thumbnail_preview','first_name', 'designation' ,)
+    list_display = ('id','thumbnail_preview','first_name','created_date')
     list_display_links = ('id','first_name','thumbnail_preview')
     search_fields = ('first_name','last_name','designation')
     list_filter = ('designation',)
