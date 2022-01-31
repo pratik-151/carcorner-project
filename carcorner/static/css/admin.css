@@ -1,0 +1,50 @@
+#header{
+    background-color: aliceblue;
+    color: black;
+    box-shadow: 0px 13px 20px 6px rgba(168,0,0,0.5);
+}
+#header a:link, #header a:visited {
+    color: brown;
+}
+
+div.breadcrumbs {
+    background: rgb(129, 86, 30);
+    padding: 10px 40px;
+    border: none;
+    color: rgb(0, 0, 0);
+    text-align: left;
+}
+
+div.breadcrumbs a {
+    color: var(--breadcrumbs-link-fg);
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: rgb(129, 86, 30);
+    color: rgb(0, 0, 0);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: rgb(129, 86, 30);
+}
+.button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: rgb(54, 36, 13);
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+
+    background: rgb(219, 201, 32);
+}
+
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    background: rgb(124, 114, 19);
+}
+
+a:link, a:visited {
+    color: rgb(204, 124, 3)
+}
