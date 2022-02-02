@@ -29,11 +29,22 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_REDIRECT_URL = 'dashboard'
+
 # Application definition
 
 INSTALLED_APPS = [
     'pages',
     'cars',
+    'accounts',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #providers
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,6 +145,14 @@ STATICFILES_DIRS = [
 # MEDIA SETTINGS
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') 
 MEDIA_URL = '/media/'
+
+# MESSAGES
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+
+SITE_ID = 1
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
