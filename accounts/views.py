@@ -3,6 +3,9 @@ from django.contrib import messages,auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+from contacts.models import Contact
+from cars.models import Car
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login_view(request):
@@ -62,5 +65,24 @@ def logout_view(request):
     messages.success(request,"Successfully Logged out")
     return redirect('login')
 
+@login_required(login_url='login')
 def dashboard(request):
-    return render(request,'accounts/dashboard.html')
+    if request.user.is_authenticated:
+        user_cars = Contact.objects.all().filter(user_id=request.user.id)
+        car_id = []
+        for user_car in user_cars:
+            car_id.append(user_car.car_id)
+
+        # print("car id=",car_id)
+
+        cars = Car.objects.filter(id__in=car_id)
+
+        # print("cars=  ",cars)
+
+        context = {
+            'cars': cars
+        }
+        return render(request,'accounts/dashboard.html',context=context)
+    
+    else:
+        return render(request,'accounts/dashboard.html')

@@ -1,7 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from pages.models import Team
 from cars.models import Car
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -30,6 +33,28 @@ def about(request):
     return render(request,"pages/about.html",context=context)
 
 def contact(request):
+    if request.method == 'POST':
+        fullname = request.POST['fullname']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        subject = request.POST['subject']
+        message = request.POST['message']
+        
+        email_message = f'Full name: {fullname}\nEmail: {email}\nphone: {phone}\nMessage: {message}'
+
+        admin_email = User.objects.get(is_superuser=True).email
+
+        send_mail(
+        subject,
+        email_message,
+        'from@example.com', # i don't want email to be publish
+        [admin_email],
+        fail_silently=False,
+        )
+
+        messages.success(request,'Successfully submitted message, We will contact you soon.')
+        return redirect('contact')
+        
     return render(request,"pages/contact.html")
 
 def services(request):

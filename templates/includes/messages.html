@@ -9,10 +9,10 @@
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                     ERROR:
                 {% else %}
-                    {{message.tags|title}}
+                    {{message.tags|title}}       
                 {% endif %}
             </strong>
-            {{message}}
+            &nbsp;&nbsp;{{message}}
         </div>
     </div>
 
